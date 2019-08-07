@@ -64,5 +64,6 @@ dependencies {
     // Core with Ktx
     implementation "androidx.core:core-ktx:$version_core"
 
-    // TODO (01) Add Dependencies for Retrofit with the Scalar Converter
+    implementation "com.squareup.retrofit2:retrofit:2.6.1"
+    implementation "com.squareup.retrofit2:converter-scalars:2.6.1"
 }
