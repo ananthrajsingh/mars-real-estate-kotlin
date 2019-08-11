@@ -50,7 +50,8 @@ class PhotoGridAdapter: ListAdapter<MarsProperty, PhotoGridAdapter.MarsPropertyV
     }
 
     override fun onBindViewHolder(holder: PhotoGridAdapter.MarsPropertyViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        var property = getItem(position)
+        holder.bind(property)
     }
 }
 
