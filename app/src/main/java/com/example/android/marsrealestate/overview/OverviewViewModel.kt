@@ -115,7 +115,6 @@ class OverviewViewModel : ViewModel() {
     fun displayPropertyDetailsComplete() {
         _navigateToSelectedProperty.value = null
     }
-
     /**
      * Updates the data set filter for the web services by querying the data with the new filter
      * by calling [getMarsRealEstateProperties]

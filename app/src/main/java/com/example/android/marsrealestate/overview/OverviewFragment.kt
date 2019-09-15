@@ -82,7 +82,6 @@ class OverviewFragment : Fragment() {
         inflater.inflate(R.menu.overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
-
     /**
      * Updates the filter in the [OverviewViewModel] when the menu items are selected from the
      * overflow menu.
