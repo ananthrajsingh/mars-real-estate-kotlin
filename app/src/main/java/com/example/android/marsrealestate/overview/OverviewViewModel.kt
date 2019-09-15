@@ -70,11 +70,12 @@ class OverviewViewModel : ViewModel() {
     }
 
     /**
-     * Gets Mars real estate property information from the Mars API Retrofit service and updates the
-     * [MarsProperty] [List] and [MarsApiStatus] [LiveData]. The Retrofit service returns a
-     * coroutine Deferred, which we await to get the result of the transaction.
+     * Gets filtered Mars real estate property information from the Mars API Retrofit service and
+     * updates the [MarsProperty] [List] and [MarsApiStatus] [LiveData]. The Retrofit service
+     * returns a coroutine Deferred, which we await to get the result of the transaction.
+     * @param filter the [MarsApiFilter] that is sent as part of the web server request
      */
-    private fun getMarsRealEstateProperties(filter: MarsApiFilter) {
+     private fun getMarsRealEstateProperties(filter: MarsApiFilter) {
         coroutineScope.launch {
             // Get the Deferred object for our Retrofit request
             var getPropertiesDeferred = MarsApi.retrofitService.getProperties(filter.value)
@@ -114,7 +115,11 @@ class OverviewViewModel : ViewModel() {
     fun displayPropertyDetailsComplete() {
         _navigateToSelectedProperty.value = null
     }
-
+    /**
+     * Updates the data set filter for the web services by querying the data with the new filter
+     * by calling [getMarsRealEstateProperties]
+     * @param filter the [MarsApiFilter] that is sent as part of the web server request
+     */
     fun updateFilter(filter: MarsApiFilter) {
         getMarsRealEstateProperties(filter)
     }
