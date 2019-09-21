@@ -21,13 +21,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.marsrealestate.network.MarsApi
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import com.example.android.marsrealestate.network.MarsApiFilter
 import com.example.android.marsrealestate.network.MarsProperty
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-
 enum class MarsApiStatus { LOADING, ERROR, DONE }
 /**
  * The [ViewModel] that is attached to the [OverviewFragment].
@@ -120,6 +122,16 @@ class OverviewViewModel : ViewModel() {
      * by calling [getMarsRealEstateProperties]
      * @param filter the [MarsApiFilter] that is sent as part of the web server request
      */
+    private fun getMarsRealEstateProperties() {
+        MarsApi.retrofitService.getProperties().enqueue(object : Callback<String> {
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                _response.value = t.message
+            }
+
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                _response.value = response.body()
+            }
+        })
     fun updateFilter(filter: MarsApiFilter) {
         getMarsRealEstateProperties(filter)
     }
