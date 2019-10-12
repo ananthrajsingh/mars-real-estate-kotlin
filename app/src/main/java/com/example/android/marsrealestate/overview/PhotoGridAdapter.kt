@@ -24,7 +24,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.marsrealestate.databinding.GridViewItemBinding
 import com.example.android.marsrealestate.network.MarsProperty
-
 /**
  * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]
  * data, including computing diffs between lists.
@@ -45,7 +44,6 @@ class PhotoGridAdapter( val onClickListener: OnClickListener ) :
             binding.executePendingBindings()
         }
     }
-
     /**
      * Allows the RecyclerView to determine which items have changed when the [List] of [MarsProperty]
      * has been updated.
@@ -59,7 +57,6 @@ class PhotoGridAdapter( val onClickListener: OnClickListener ) :
             return oldItem.id == newItem.id
         }
     }
-
     /**
      * Create new [RecyclerView] item views (invoked by the layout manager)
      */
